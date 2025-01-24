@@ -1,5 +1,5 @@
 import unit4.collectionsLib.Node;
-
+// Напиши функцию, которая считает количество последовательностей числа (таргет) в решиме мекушерет.
 public class Matala_31 {
     public static void main(String[] args) {
         Node<Integer> list = createList(new int[]{2, 7, 5, 3, 2, 2, 1, 1, 2, 2}); // Пример списка

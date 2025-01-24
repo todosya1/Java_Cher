@@ -1,42 +1,33 @@
 import unit4.collectionsLib.Node;
-
+// Напиши функцию, которая проверяет наличие числа (таргет0 в решиме мекушерет
 public class Matala_32 {
     public static void main(String[] args) {
-        Node<Integer> list = createList(new int[]{2, 7, 5, 3, 2, 2, 1, 1, 2, 2}); // Пример списка
-        printList(list);
-        int number = 2; // Число, которое нужно найти
-        System.out.println("Количество последовательностей числа " + number + ": " + countSequences(list, number));
+        Node<Double> list = createList(new double[]{1.2, 3.5, 4.0, 6.7}); // Пример списка
+        double number = 4.0; // Число для поиска
+        System.out.println("Число " + number + " найдено в списке: " + containsNumber(list, number));
+
+        number = 5.5;
+        System.out.println("Число " + number + " найдено в списке: " + containsNumber(list, number));
     }
 
-    public static int countSequences(Node<Integer> head, int target) {
-        if (head == null) {
-            return 0; // Пустой список
-        }
-
-        int count = 0;
-        boolean inSequence = false; // Флаг для отслеживания текущей последовательности
-        Node<Integer> current = head;
+    public static boolean containsNumber(Node<Double> head, double target) {
+        Node<Double> current = head;
 
         while (current != null) {
             if (current.getValue() == target) {
-                if (!inSequence) {
-                    count++; // Новая последовательность
-                    inSequence = true;
-                }
-            } else {
-                inSequence = false; // Конец текущей последовательности
+                return true; // Число найдено
             }
             current = current.getNext();
         }
 
-        return count;
+        return false; // Число не найдено
     }
 
-    public static Node<Integer> createList(int[] values) {
-        Node<Integer> head = null;
-        Node<Integer> current = null;
+    public static Node<Double> createList(double[] values) {
+        Node<Double> head = null;
+        Node<Double> current = null;
 
-        for (int value : values) {
+        for (double value : values) {
             if (head == null) {
                 head = new Node<>(value);
                 current = head;
