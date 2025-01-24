@@ -1,57 +1,42 @@
 import unit4.collectionsLib.Node;
 
 /*
-  Функция, которая принимает связный список чисел с плавающей запятой и возвращает true,
-   если количество элементов, значение которых выше среднего, равно количеству элементов,
-    значение которых ниже среднего. В противном случае функция возвращает false.
+  Функция на Java, которая проверяет,
+  упорядочены ли элементы связного списка в порядке возрастания:
 */
 public class Matala_30 {
     public static void main(String[] args) {
-        Node<Double> list = createList(new double[]{1.5, 2.0, 3.5, 6.0, 7.5, 9.0}); // Пример списка
-        System.out.println("Результат: " + isEqualAboveBelowAverage(list));
+        Node<Integer> list1 = createList(new int[]{1, 2, 3, 4, 5}); // Упорядоченный список
+        Node<Integer> list2 = createList(new int[]{1, 3, 0, 4, 5}); // Неупорядоченный список
+
+        System.out.println("Список 1 упорядочен по возрастанию: " + isAscending(list1));
+        System.out.println("Список 2 упорядочен по возрастанию: " + isAscending(list2));
     }
 
-    public static boolean isEqualAboveBelowAverage(Node<Double> head) {
-        if (head == null) return false; // Пустой список
-
-        // Вычисление среднего значения
-        double sum = 0;
-        int count = 0;
-        Node<Double> current = head;
-
-        while (current != null) {
-            sum += current.getValue();
-            count++;
-            current = current.getNext();
+    public static boolean isAscending(Node<Integer> head) {
+        if (head == null || head.getNext() == null) {
+            return true; // Пустой список или список с одним элементом считается упорядоченным
         }
 
-        double average = sum / count;
+        Node<Integer> current = head;
 
-        // Подсчет элементов выше и ниже среднего
-        int aboveCount = 0;
-        int belowCount = 0;
-        current = head;
-
-        while (current != null) {
-            if (current.getValue() > average) {
-                aboveCount++;
-            } else if (current.getValue() < average) {
-                belowCount++;
+        while (current.getNext() != null) {
+            if (current.getValue() > current.getNext().getValue()) {
+                return false; // Найдено нарушение порядка возрастания
             }
             current = current.getNext();
         }
 
-        // Проверка равенства
-        return aboveCount == belowCount;
+        return true; // Все элементы упорядочены по возрастанию
     }
 
-    public static Node<Double> createList(double[] values) {
+    public static Node<Integer> createList(int[] values) {
         /*
         Вспомогательная функция для создания связного списка из массива
         */
-        Node<Double> head = null;
-        Node<Double> current = null;
-        for (double value : values) {
+        Node<Integer> head = null;
+        Node<Integer> current = null;
+        for (int value : values) {
             if (head == null) {
                 head = new Node<>(value);
                 current = head;
