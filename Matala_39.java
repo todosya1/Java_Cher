@@ -6,24 +6,9 @@ import unit4.collectionsLib.Node;
 // כיתה 48-5
 
 /**
- * this class contains functions for removing duplicates characters from reshima mekusheret
+ * Этот класс содержит функцию, удаляющую последовательные дубликаты символов из связанного списка
  */
 public class Matala_39 {
-    public static void main(String[] args) {
-        // Тестовые случаи
-        String[] tests = {
-                "kkkbkzeez",   // Должно стать "kbkzez"
-                "aaaa",
-               };
-
-        for (int i = 0; i < tests.length; i++) {
-            Node<Character> list = createList(tests[i]);
-            System.out.println("original reshima: " + tests[i]);
-            System.out.print("Измененный список: ");
-            printList(removeConsecutiveDuplicates(list));
-            System.out.println();
-        }
-    }
     /**
      * Удаляет последовательные дубликаты символов из связанного списка.
      * Сохраняет первый символ в каждой последовательности и удаляет остальные.
@@ -86,5 +71,21 @@ public class Matala_39 {
         System.out.println();
     }
     
-
+    public static void main(String[] args) {
+        // Тестовые случаи
+        String[] tests = {
+            "aabbcc",      // Должно стать "abc"
+            "aaaa",        // Должно стать "a"
+            "abcd",        // Должно остаться "abcd"
+            "aabbccaa"     // Должно стать "abca"
+        };
+        
+        for (int i = 0; i < tests.length; i++) {
+            Node<Character> list = createList(tests[i]);
+            System.out.println("Оригинальный список: " + tests[i]);
+            System.out.print("Измененный список: ");
+            printList(removeConsecutiveDuplicates(list));
+            System.out.println();
+        }
+    }
 }
