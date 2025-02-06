@@ -46,7 +46,11 @@ public class baza {
 
     10. Метод возвращает ТРУ/ФОЛС если справа есть узел или null
         boolean hasRight = parentNode.hasRight(); // Проверка наличия правого дочернего узла
-        System.out.println("10. Существует ли левый дочерний узел: " + hasRight); // Вывод: Существует ли правый дочерний узел: true
+        System.out.println("10. Существует ли правый дочерний узел: " + hasRight); // Вывод: Существует ли правый дочерний узел: true
+
+    11. Метод возвращает строку, описывающую текущий узел
+        String toString()
+        System.out.println("11. Печать узла: "+parentNode.toString());
     */
 
     public static void main(String[] args) {
@@ -88,26 +92,59 @@ public class baza {
 
         // 10. Пример использования метода .hasRight()
         boolean hasRight = parentNode.hasRight(); // Проверка наличия правого дочернего узла
-        System.out.println("10. Существует ли левый дочерний узел: " + hasRight); // Вывод: Существует ли правый дочерний узел: true
+        System.out.println("10. Существует ли правый дочерний узел: " + hasRight); // Вывод: Существует ли правый дочерний узел: true
+
+        // 11. Пример использования метода String toString()
+        System.out.println("11. Печать узла: "+parentNode.toString()); //Метод возвращает строку, описывающую текущий узел
+
+        // 12. Создание BinNode из Arr
+        int[] arr = {2,4,5,6,9};
+        BinNode<Integer> list = createList(arr);
+
+        // 13. Пропечатать двусвязный список
+        printList(list);
+
+        // 14. Создание двунаправленного списка последовательных целых чисел от 1 до n
+        BinNode<Integer> sequentialList = createSequentialList(10);
+        printList(sequentialList);
     }
 
-
-/*
     public static BinNode<Integer> createList(int[] values) {
         // создание двусвязного списка из массива.
         BinNode<Integer> head = null;
         BinNode<Integer> current = null;
 
-        for (int i = 0; i < values.length; i++) {
+        for (int bafer : values) {
+            BinNode<Integer> newBinNode = new BinNode<>(bafer); // Создание нового узла
             if (head == null) {
-                head = new BinNode<>(values[i]);
+                head = newBinNode; // Если это первый узел, он становится головой
                 current = head;
             } else {
-                current.setNext(new BinNode<>(values[i]));
-                current = current.getNext();
+                current.setRight(newBinNode); // Установка следующего узла
+                newBinNode.setLeft(current);  // Установка предыдущего узла ("парное связывание")
+                current = newBinNode; // Переход к новому узлу
             }
         }
-        return head;
+        return head; // Возвращаем голову списка
+    }
+
+    public static BinNode<Integer> createSequentialList(int n) {
+        // Создание двусвязного списка последовательных целых чисел от 1 до n.
+        BinNode<Integer> head = null;
+        BinNode<Integer> current = null;
+
+        for (int i = 1; i <= n; i++) {
+            BinNode<Integer> newNode = new BinNode<>(i); // Создание нового узла
+            if (head == null) {
+                head = newNode; // Если это первый узел, он становится головой
+                current = head;
+            } else {
+                current.setRight(newNode); // Установка следующего узла
+                newNode.setLeft(current); // Установка предыдущего узла
+                current = newNode; // Переход к новому узлу
+            }
+        }
+        return head; // Возвращаем голову списка
     }
 
     public static void printList(BinNode<Integer> head) {
@@ -115,13 +152,11 @@ public class baza {
         BinNode<Integer> current = head;
         while (current != null) {
             System.out.print(current.getValue());
-            if (current.getNext() != null) {
-                System.out.print(" -> ");
+            if (current.getRight() != null) { // Проверяем наличие правого узла
+                System.out.print(" <-> ");
             }
-            current = current.getNext();
+            current = current.getRight(); // Переход к следующему узлу
         }
-        System.out.println();
+        System.out.println(); // Печатаем новую строку после списка
     }
-
- */
 }

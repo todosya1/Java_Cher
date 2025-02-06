@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BinNode/BinNode.iml" filepath="$PROJECT_DIR$/BinNode/BinNode.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Java_Cher.iml" filepath="$PROJECT_DIR$/.idea/Java_Cher.iml" />
     </modules>
   </component>
