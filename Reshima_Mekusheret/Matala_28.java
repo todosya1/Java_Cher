@@ -1,3 +1,5 @@
+package Reshima_Mekusheret;
+
 import unit4.collectionsLib.Node;
 // מגישים:
 // יבגני נמצ'נקו 321404634
@@ -6,46 +8,33 @@ import unit4.collectionsLib.Node;
 
 /**
  * This class contains functions to work with a linked list of integers,
- * including counting the number of sequences of a target number.
+ * including summing up elements, creating a list, and printing its contents.
  */
-public class Matala_31 {
-    public static void main(String[] args) {
-        Node<Integer> list = createList(new int[]{2, 7, 5, 3, 2, 2, 1, 1, 2, 2}); // Example list
+public class Matala_28 {
+       public static void main(String[] args) {
+        Node<Integer> list = createList(new int[]{5, 5, 15, 5, 5, 25}); // Example list
+        System.out.println("Sum of list elements: " + sumOfList(list));
         printList(list);
-        int number = 2; // Target number
-        System.out.println("Number of sequences of " + number + ": " + countSequences(list, number));
     }
 
     /**
-     * Counts the number of sequences of a target number in a linked list.
-     * A sequence is defined as one or more consecutive occurrences of the target number.
-     * complexity: O(n), where n is the number of nodes in the linked list. The list is traversed once.
-     * @param head   the head node of the linked list
-     * @param target the target number to count sequences for
-     * @return the number of sequences of the target number
+     * Calculates the sum of all elements in a linked list of integers.
+     *
+     * Complexity:
+     * - Time complexity: O(n), where n is the number of nodes in the linked list. Each node is visited once.
+     * * @param head the head node of the linked list
+     * @return the sum of all integers in the list
      */
-    public static int countSequences(Node<Integer> head, int target) {
-        if (head == null) {
-            return 0; // Empty list
-        }
-
-        int count = 0;
-        boolean inSequence = false; // Flag to track the current sequence
+    public static int sumOfList(Node<Integer> head) {
+        int sum = 0;
         Node<Integer> current = head;
 
         while (current != null) {
-            if (current.getValue() == target) {
-                if (!inSequence) {
-                    count++; // New sequence found
-                    inSequence = true;
-                }
-            } else {
-                inSequence = false; // End of the current sequence
-            }
-            current = current.getNext();
+            sum += current.getValue(); // Add the value of the current node
+            current = current.getNext(); // Move to the next node
         }
 
-        return count;
+        return sum; // Return the total sum
     }
 
     /**

@@ -1,3 +1,5 @@
+package Reshima_Mekusheret;
+
 import unit4.collectionsLib.Node;
 import java.util.Scanner;
 
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * This class contains a function that creates a sorted linked list from user input.
- * The function uses insertSorted from Matala_37 to maintain the sorted order.
+ * The function uses insertSorted from Reshima_Mekusheret.Matala_37 to maintain the sorted order.
  */
 public class Matala_38 {
     public static void main(String[] args) {
@@ -20,7 +22,7 @@ public class Matala_38 {
     /**
      * Creates a sorted linked list from user input.
      * Reads integers until a number greater than 99 is entered.
-     * Uses insertSorted from Matala_37 to maintain the sorted order.
+     * Uses insertSorted from Reshima_Mekusheret.Matala_37 to maintain the sorted order.
      * Сomplexity: O(n²)
      * @return head of the sorted linked list
      */
