@@ -1,29 +1,31 @@
 package BinNode;
-
 import unit4.collectionsLib.BinNode;
 
-// Напиши функцию, которая получает binNode int-ов, ссылку на узел в нем и целое число num.
-// Метод должен добавить новый элемент со значением num слева от полученного узла
+// Напиши функцию, которая получает binNode int-ов и ссылку на узел в нем.
+// Метод должен удалить указанный узел
 
-public class bn_targil4 {
+public class bn_targil5 {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 3, 2, 1};
+        int[] arr = {1, 2, 7, 2, 1};
 
         BinNode<Integer> golova = createList(arr);
         printList(createList(arr));
-        insertNumList(golova, 3, 777);
+        deleteNode(golova, 2);
         printList(golova);
     }
 
-    public static void insertNumList(BinNode<Integer> head, int index, int num) {
+    public static BinNode<Integer> deleteNode(BinNode<Integer> head, int index) {
         if (head == null) {
             System.out.println("Список не может быть пустым.");
-            return;
+            return null;
         }
-        index--;
-        BinNode<Integer> current = head;
-        BinNode<Integer> target = null;
+
+        BinNode<Integer> current = head; // создаем указатель
+        BinNode<Integer> target = null;  // создаем ноду под удаление
+        BinNode<Integer> prev = null;
+
         int i = 0;
+        // поиск нужного узла
         while (current != null) {
             if (i == index) {
                 target = current;
@@ -35,27 +37,28 @@ public class bn_targil4 {
 
         if (target == null) {
             System.out.println("Индекс вне диапазона.");
-            return;
+            return head;
         }
 
-        // Создаем новый узел с заданным значением
-        BinNode<Integer> newNode = new BinNode<>(num);
+        prev = target.getLeft();
+        BinNode<Integer> next = target.getRight();
 
-        // Устанавливаем связи для нового узла
-        newNode.setLeft(target); // Устанавливаем левый указатель
-        newNode.setRight(target.getRight()); // Устанавливаем правый указатель
-
-        if (target.getRight() != null) {
-            target.getRight().setLeft(newNode); // Устанавливаем левый указатель у следующего узла
+        // Удаление узла
+        if (prev != null) {
+            prev.setRight(next); // Устанавливаем новый узел справа от текущего узла
+        } else {
+            head = next; // Если удаляем голову, обновляем голову
         }
 
-        target.setRight(newNode); // Устанавливаем новый узел справа от текущего узла
+        if (next != null) {
+            next.setLeft(prev); // Устанавливаем левый указатель у следующего узла
+        }
+        return head;
     }
 
 
     public static BinNode<Integer> createList(int[] values) {
         // создание двусвязного списка из массива.
-
         BinNode<Integer> head = null;
         BinNode<Integer> current = null;
 
@@ -86,21 +89,5 @@ public class bn_targil4 {
         System.out.println(); // Печатаем новую строку после списка
     }
 
-    public static void printRightList(BinNode<Integer> head) {
-        // Найдем конец списка
-        BinNode<Integer> current = head;        // создаем указатель
-        while (current.getRight() != null) {    // Ищем последний узел
-            current = current.getRight();
-        }
 
-        // Печатаем значения в обратном порядке
-        while (current != null) { // Печатаем от конца к началу
-            System.out.print(current.getValue());
-            if (current.getLeft() != null) { // Проверяем наличие левого узла
-                System.out.print(" <-> ");
-            }
-            current = current.getLeft();
-        }
-        System.out.println(); // Печатаем новую строку после списка
-    }
 }
