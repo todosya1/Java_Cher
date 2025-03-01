@@ -29,10 +29,10 @@ public class baza_queue {
             System.out.println("Ошибка: очередь пуста");
             return 0;
         }
-    
+
         Queue<Integer> tempQueue = new Queue<Integer>();
         int max = queue.head(); // Первый элемент тора как начальный максимум
-    
+
         while (!queue.isEmpty()) {
             int current = queue.remove();
             if (current > max) {
@@ -40,6 +40,13 @@ public class baza_queue {
             }
             tempQueue.insert(current);
         }
+
+        // Восстанавливаем исходную очередь
+        while (!tempQueue.isEmpty()) {
+            queue.insert(tempQueue.remove());
+        }
+
+        return max; // Возвращаем найденный максимум
     }
     public static void main(String[] args) {
         // Пример 1: Работа с числами
