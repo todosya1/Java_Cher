@@ -1,0 +1,67 @@
+@startuml
+title Сортировка вставками (Insertion Sort)
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Пример вставки числа 4 в отсортированный массив [1, 3, 5, 7, _, _, _]" as example {
+    node "Шаг 1: Ищем место для вставки" as step1 {
+        node "[1, 3, 5, 7, _, _, _]" as arr1
+        node "4 < 7: сдвигаем 7" as note1
+    }
+
+    node "Шаг 2: Продолжаем сравнение" as step2 {
+        node "[1, 3, 5, 7, 7, _, _]" as arr2
+        node "4 < 5: сдвигаем 5" as note2
+    }
+
+    node "Шаг 3: Продолжаем сравнение" as step3 {
+        node "[1, 3, 5, 5, 7, _, _]" as arr3
+        node "4 > 3: нашли место!" as note3
+    }
+
+    node "Шаг 4: Вставляем число" as step4 {
+        node "[1, 3, 4, 5, 7, _, _]" as arr4 #LightGreen
+        node "Вставляем 4 после 3" as note4
+    }
+}
+
+step1 -down-> step2
+step2 -down-> step3
+step3 -down-> step4
+
+legend right
+  Как работает:
+  1. Массив условно разделен на:
+     - Отсортированную часть слева
+     - Неотсортированную справа
+  2. Берем новый элемент
+  3. Сдвигаем большие элементы вправо
+  4. Вставляем элемент в нужное место
+  
+  Сложность:
+  - Временная: O(n²)
+  - Пространственная: O(1)
+end legend
+
+note left of step1
+  Параметры функции:
+  a[] - массив
+  n - индекс для вставки
+  num - число для вставки
+end note
+
+note right of step4
+  Преимущества:
+  1. Эффективен для почти
+     отсортированных массивов
+  2. Стабильная сортировка
+  3. Работает "на месте"
+  4. Хорош для малых массивов
+end note
+
+@enduml

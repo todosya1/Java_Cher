@@ -1,0 +1,58 @@
+@startdot
+digraph G {
+    rankdir=LR;
+    node [shape=box, fontname="Arial"];
+    bgcolor="white";
+    
+    subgraph cluster_example {
+        label="Пример работы функции";
+        style=filled;
+        color=white;
+        
+        subgraph cluster_step1 {
+            label="Шаг 1: Начальное состояние";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s1 [label="Стек st\n[3.5, 7.2, 4.1, 2.8]\nmax = 3.5 (первый элемент)"];
+        }
+        
+        subgraph cluster_step2 {
+            label="Шаг 2: Поиск максимума";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s2_1 [label="Проверяем 3.5 → temp"];
+            s2_2 [label="Проверяем 7.2 → max = 7.2, → temp"];
+            s2_3 [label="Проверяем 4.1 → temp"];
+            s2_4 [label="Проверяем 2.8 → temp"];
+            
+            s2_1 -> s2_2 -> s2_3 -> s2_4;
+        }
+        
+        subgraph cluster_step3 {
+            label="Шаг 3: Восстановление стека";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s3_1 [label="temp: [2.8, 4.1, 7.2, 3.5]"];
+            s3_2 [label="Возвращаем в st\nпропуская 7.2"];
+            s3_3 [label="Результат st: [3.5, 4.1, 2.8]"];
+            
+            s3_1 -> s3_2 -> s3_3;
+        }
+        
+        subgraph cluster_result {
+            label="Результат";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            r1 [label="Возвращаем max = 7.2\nСтек st = [3.5, 4.1, 2.8]"];
+        }
+    }
+}
+@enddot

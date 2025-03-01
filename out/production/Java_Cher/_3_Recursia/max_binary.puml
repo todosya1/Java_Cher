@@ -1,0 +1,54 @@
+@startuml
+title Поиск максимума (бинарный метод B)
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "Исходный массив [1,-5,10,-2,4,6,-7,8,-9,3]" as arr
+
+node "Уровень 1\nРазделение массива" as level1 {
+    node "[1,-5,10,-2,4] | [6,-7,8,-9,3]" as split1
+    node "mid = 4" as mid1
+}
+
+node "Уровень 2\nРазделение подмассивов" as level2 {
+    node "[1,-5] | [10,-2,4]" as split2a
+    node "[6,-7] | [8,-9,3]" as split2b
+    node "mid = 1, mid = 6" as mid2
+}
+
+node "Уровень 3\nДальнейшее разделение" as level3 {
+    node "[1] | [-5]" as split3a
+    node "[10] | [-2,4]" as split3b
+    node "[6] | [-7]" as split3c
+    node "[8] | [-9,3]" as split3d
+}
+
+node "Результаты сравнений" as results {
+    node "max(1,-5) = 1" as res1
+    node "max(10,max(-2,4)) = 10" as res2
+    node "max(6,-7) = 6" as res3
+    node "max(8,max(-9,3)) = 8" as res4
+    node "max(10,8) = 10" as final #LightGreen
+}
+
+arr -down-> level1
+level1 -down-> level2
+level2 -down-> level3
+level3 -down-> results
+
+legend right
+    Как работает:
+    1. Делим массив пополам
+    2. Рекурсивно ищем максимум
+       в каждой половине
+    3. Сравниваем максимумы
+       половин
+    4. Возвращаем большее
+       значение
+end legend
+
+@enduml

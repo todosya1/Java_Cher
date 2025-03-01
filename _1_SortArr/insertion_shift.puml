@@ -1,0 +1,55 @@
+@startuml
+title Процесс сдвига элементов при вставке
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Пример: вставка числа 3 в позицию 2" as example {
+    node "Шаг 1: Исходный массив" as step1 {
+        node "[1, 2, 5, 6, 7, _]" as arr1
+        node "Последний элемент будет\nсдвинут за пределы диапазона" as note1
+    }
+
+    node "Шаг 2: Сдвиг элементов" as step2 {
+        node "[1, 2, 5, 5, 6, 7]" as arr2 #Pink
+        node "Все элементы начиная с позиции 2\nсдвигаются на одну позицию вправо" as note2
+    }
+
+    node "Шаг 3: Вставка нового элемента" as step3 {
+        node "[1, 2, 3, 5, 6, 7]" as arr3 #LightGreen
+        node "Вставляем 3 в освободившуюся позицию" as note3
+    }
+}
+
+step1 -down-> step2
+step2 -down-> step3
+
+legend right
+  Важно понимать:
+  1. При вставке элементы не удаляются,
+     а сдвигаются вправо
+  2. Нужно иметь свободное место
+     в конце массива
+  3. Последний элемент после сдвига
+     окажется в следующей позиции
+end legend
+
+note left of step2
+  При сдвиге:
+  a[j] = a[j-1]
+  Копируем каждый элемент
+  в следующую позицию
+end note
+
+note right of step3
+  После сдвига:
+  a[i] = num
+  Вставляем новое число
+  в освободившееся место
+end note
+
+@enduml

@@ -1,0 +1,57 @@
+@startuml
+title Полная сортировка вставками несортированного массива
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Сортировка массива [5, 2, 8, 1, 9]" as example {
+    node "Исходный массив:" as start {
+        node "[5, 2, 8, 1, 9]" as arr0
+    }
+
+    node "Шаг 1 (i=1): вставка 2" as step1 {
+        node "[2, 5, 8, 1, 9]" as arr1
+        node "key = 2\n2 < 5: сдвигаем 5" as note1
+    }
+
+    node "Шаг 2 (i=2): вставка 8" as step2 {
+        node "[2, 5, 8, 1, 9]" as arr2
+        node "key = 8\n8 > 5: остаётся на месте" as note2
+    }
+
+    node "Шаг 3 (i=3): вставка 1" as step3 {
+        node "[1, 2, 5, 8, 9]" as arr3
+        node "key = 1\n1 < 8, 5, 2: сдвигаем всех" as note3
+    }
+
+    node "Шаг 4 (i=4): вставка 9" as step4 {
+        node "[1, 2, 5, 8, 9]" as arr4 #LightGreen
+        node "key = 9\n9 > 8: остаётся на месте" as note4
+    }
+}
+
+start -down-> step1
+step1 -down-> step2
+step2 -down-> step3
+step3 -down-> step4
+
+legend right
+  Алгоритм:
+  1. Берём каждый элемент начиная 
+     со второго (i=1)
+  2. Сравниваем его со всеми 
+     элементами слева
+  3. Сдвигаем большие элементы 
+     вправо
+  4. Вставляем элемент в 
+     освободившееся место
+  
+  Сложность: O(n²)
+  - n элементов
+  - для каждого до n сравнений
+end note
+@enduml

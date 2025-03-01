@@ -1,0 +1,49 @@
+@startdot
+digraph G {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+    
+    subgraph cluster_0 {
+        label="Исходный стек";
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        
+        30 -> 20 -> 10 [dir=none];
+        label="Начальное состояние\n30 наверху";
+    }
+    
+    subgraph cluster_1 {
+        label="Шаг 1: Сохраняем первый элемент";
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        
+        res_30 [label="30"];
+        
+        label="res содержит 30";
+    }
+    
+    subgraph cluster_2 {
+        label="Шаг 2: Перекладываем остальные";
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        
+        temp_10 -> temp_20 [dir=none];
+        
+        label="temp содержит\n10 -> 20";
+    }
+    
+    subgraph cluster_3 {
+        label="Результат";
+        style=filled;
+        color=lightgreen;
+        node [style=filled,color=white];
+        
+        10 -> 20 -> 30_new [label="30_new"];
+        
+        label="Конечное состояние\n10 наверху, 30 внизу";
+    }
+}
+@enddot

@@ -1,0 +1,45 @@
+@startuml
+title Сумма чисел, делящихся на 10
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "Исходный массив [30,4,2,30,2,40,5,6,7,8,-1,0,-19]" as arr
+
+node "Проверка чисел с конца" as check {
+    node "index = 12: -19 не делится на 10 → +0" as step1 #Pink
+    node "index = 11: 0 делится на 10 → +0" as step2 #LightGreen
+    node "index = 10: -1 не делится на 10 → +0" as step3 #Pink
+    node "index = 9: 8 не делится на 10 → +0" as step4 #Pink
+    node "index = 8: 7 не делится на 10 → +0" as step5 #Pink
+    node "index = 7: 6 не делится на 10 → +0" as step6 #Pink
+    node "index = 6: 5 не делится на 10 → +0" as step7 #Pink
+    node "index = 5: 40 делится на 10 → +40" as step8 #LightGreen
+    node "index = 4: 2 не делится на 10 → +0" as step9 #Pink
+    node "index = 3: 30 делится на 10 → +30" as step10 #LightGreen
+    node "index = 2: 2 не делится на 10 → +0" as step11 #Pink
+    node "index = 1: 4 не делится на 10 → +0" as step12 #Pink
+    node "index = 0: 30 делится на 10 → +30" as step13 #LightGreen
+}
+
+node "Результат: 30 + 30 + 40 + 0 = 100" as result #LightGreen
+
+arr -down-> check
+check -down-> result
+
+legend right
+    Как работает:
+    1. Начинаем с конца массива
+    2. Проверяем каждое число:
+       если делится на 10 (% 10 == 0)
+       добавляем к сумме
+    3. Рекурсивно проверяем
+       следующее число
+    4. Когда index < 0,
+       возвращаем накопленную сумму
+end legend
+
+@enduml

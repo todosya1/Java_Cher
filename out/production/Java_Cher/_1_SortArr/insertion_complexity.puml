@@ -1,0 +1,56 @@
+@startuml
+title Сложность Insertion Sort: O(n²)
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Анализ сложности" as complexity {
+    node "Внешний цикл" as outer {
+        node "for(i=0; i<n && arr[i]<num; i++)" as loop1
+        node "Максимум n итераций" as note1
+    }
+    
+    node "Внутренний цикл" as inner {
+        node "for(j=n; j>i; j--)" as loop2
+        node "В худшем случае:\nn-i итераций" as note2
+    }
+}
+
+node "Худший случай" as worst {
+    node "Пример: вставка 1 в конец" as example {
+        node "[5, 6, 7, 8, 9, _]" as arr1
+        node "1. Проверим все элементы\n2. Сдвинем все элементы\n3. O(n) + O(n) = O(n)" as steps
+    }
+}
+
+legend right
+  Сложность O(n²) потому что:
+  1. Внешний цикл: O(n)
+  2. Внутренний цикл: O(n)
+  3. Вложенные циклы: O(n) * O(n)
+  
+  Лучший случай: O(n)
+  - Когда массив уже отсортирован
+  - Только проверка элементов
+  
+  Худший случай: O(n²)
+  - Когда массив отсортирован в
+    обратном порядке
+  - Каждый элемент нужно сдвигать
+end legend
+
+note right of outer
+  Первый цикл ищет
+  позицию для вставки
+end note
+
+note right of inner
+  Второй цикл сдвигает
+  элементы вправо
+end note
+
+@enduml

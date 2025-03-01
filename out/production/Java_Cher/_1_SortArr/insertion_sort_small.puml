@@ -1,0 +1,66 @@
+@startuml
+title Сортировка вставками для массива [-5, 0, 1, 2, 4]
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Вставка числа -2" as example1 {
+    node "Шаг 1: Исходное состояние" as step1 {
+        node "[-5, 0, 1, 2, 4]" as arr1
+        node "Индексы: [0, 1, 2, 3, 4]" as idx1
+    }
+
+    node "Шаг 2: Ищем место для -2" as step2 {
+        node "[-5, 0, 1, 2, 4]" as arr2
+        node "-2 > -5, но -2 < 0\nВставляем после -5" as note2
+    }
+
+    node "Шаг 3: Сдвигаем элементы" as step3 {
+        node "[-5, 0, 0, 1, 2]" as arr3
+        node "Сдвигаем элементы вправо\nначиная с позиции 1" as note3
+    }
+
+    node "Результат" as step4 {
+        node "[-5, -2, 0, 1, 2]" as arr4 #LightGreen
+        node "Вставили -2 в позицию 1" as note4
+    }
+}
+
+step1 -down-> step2
+step2 -down-> step3
+step3 -down-> step4
+
+legend right
+  Процесс вставки:
+  1. Находим правильную позицию
+     для вставки нового числа
+  2. Сдвигаем все элементы
+     справа от этой позиции
+  3. Вставляем число
+  
+  Сравнения:
+  -2 > -5 (продолжаем)
+  -2 < 0  (вставляем здесь)
+end legend
+
+note right of step1
+  Исходный массив уже
+  отсортирован. 
+  
+  Нужно вставить -2 так,
+  чтобы сохранить порядок
+  сортировки.
+end note
+
+note right of step4
+  После вставки массив
+  остаётся отсортированным:
+  каждый элемент меньше
+  следующего
+end note
+
+@enduml

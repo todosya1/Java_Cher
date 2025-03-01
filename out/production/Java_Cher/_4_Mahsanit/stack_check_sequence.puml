@@ -1,0 +1,59 @@
+@startdot
+digraph G {
+    rankdir=LR;
+    node [shape=box, fontname="Arial", style="filled,solid", color="black", fillcolor="white"];
+    bgcolor="white";
+    
+    subgraph cluster_example1 {
+        label="Пример 1: Число 123";
+        style="filled,solid";
+        color="black";
+        bgcolor="white";
+        
+        subgraph cluster_true {
+            label="Возвращает true";
+            style="filled,solid";
+            color="black";
+            bgcolor="white";
+            
+            t1 [label="Стек: [7,1,2,3,8]\nПоследовательность 1,2,3\nнайдена подряд"];
+            
+            t2 [label="Стек: [7,3,2,1,8]\nПоследовательность 3,2,1\nнайдена подряд"];
+        }
+        
+        subgraph cluster_false {
+            label="Возвращает false";
+            style="filled,solid";
+            color="black";
+            bgcolor="white";
+            
+            f1 [label="Стек: [7,1,8,2,3]\nЦифры есть, но\nне идут подряд"];
+            
+            f2 [label="Стек: [7,1,2,8,9]\nНе все цифры\nприсутствуют"];
+        }
+    }
+    
+    subgraph cluster_algorithm {
+        label="Алгоритм проверки";
+        style="filled,solid";
+        color="black";
+        bgcolor="white";
+        
+        step1 [label="1. Найти первую цифру\nчисла в стеке"];
+        step2 [label="2. Проверить, есть ли\nследующие цифры подряд"];
+        step3 [label="3. Проверить все возможные\nпоследовательности"];
+        step4 [label="4. Если найдена полная\nпоследовательность → true"];
+        
+        step1 -> step2 -> step3 -> step4;
+    }
+    
+    subgraph cluster_complexity {
+        label="Временная сложность";
+        style="filled,solid";
+        color="black";
+        bgcolor="white";
+        
+        c1 [label="O(n * m)\nn - размер стека\nm - длина числа"];
+    }
+}
+@enddot

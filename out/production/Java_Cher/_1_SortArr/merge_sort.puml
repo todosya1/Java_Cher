@@ -1,0 +1,111 @@
+@startuml
+title Сортировка слиянием (Merge Sort) для массива [8, 3, 2, 9, 7, 1, 5, 4]
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Разделение массива" as split {
+    node "[8, 3, 2, 9, 7, 1, 5, 4]" as level0
+    
+    node "[8, 3, 2, 9]" as level1_left
+    node "[7, 1, 5, 4]" as level1_right
+    
+    node "[8, 3]" as level2_left1
+    node "[2, 9]" as level2_left2
+    node "[7, 1]" as level2_right1
+    node "[5, 4]" as level2_right2
+    
+    node "[8]" as level3_1
+    node "[3]" as level3_2
+    node "[2]" as level3_3
+    node "[9]" as level3_4
+    node "[7]" as level3_5
+    node "[1]" as level3_6
+    node "[5]" as level3_7
+    node "[4]" as level3_8
+}
+
+node "Слияние и сортировка" as merge {
+    node "[3, 8]" as level2_merge1
+    node "[2, 9]" as level2_merge2
+    node "[1, 7]" as level2_merge3
+    node "[4, 5]" as level2_merge4
+    
+    node "[2, 3, 8, 9]" as level1_merge1
+    node "[1, 4, 5, 7]" as level1_merge2
+    
+    node "[1, 2, 3, 4, 5, 7, 8, 9]" as level0_merge
+}
+
+' Стрелки разделения
+level0 -down-> level1_left
+level0 -down-> level1_right
+
+level1_left -down-> level2_left1
+level1_left -down-> level2_left2
+level1_right -down-> level2_right1
+level1_right -down-> level2_right2
+
+level2_left1 -down-> level3_1
+level2_left1 -down-> level3_2
+level2_left2 -down-> level3_3
+level2_left2 -down-> level3_4
+level2_right1 -down-> level3_5
+level2_right1 -down-> level3_6
+level2_right2 -down-> level3_7
+level2_right2 -down-> level3_8
+
+' Стрелки слияния
+level3_1 -down-> level2_merge1
+level3_2 -down-> level2_merge1
+level3_3 -down-> level2_merge2
+level3_4 -down-> level2_merge2
+level3_5 -down-> level2_merge3
+level3_6 -down-> level2_merge3
+level3_7 -down-> level2_merge4
+level3_8 -down-> level2_merge4
+
+level2_merge1 -down-> level1_merge1
+level2_merge2 -down-> level1_merge1
+level2_merge3 -down-> level1_merge2
+level2_merge4 -down-> level1_merge2
+
+level1_merge1 -down-> level0_merge
+level1_merge2 -down-> level0_merge
+
+legend right
+  Алгоритм:
+  1. Разделение (Divide):
+     - Делим массив пополам рекурсивно
+     - Пока не получим массивы из 1 элемента
+  
+  2. Слияние (Merge):
+     - Сливаем и сортируем пары массивов
+     - Повторяем, пока не получим
+       один отсортированный массив
+  
+  Сложность:
+  - Временная: O(n log n)
+  - Пространственная: O(n)
+end legend
+
+note right of split
+  Разделение:
+  Массив делится пополам
+  на каждом уровне, пока
+  не останутся одиночные
+  элементы
+end note
+
+note right of merge
+  Слияние:
+  При слиянии двух массивов
+  элементы сравниваются и
+  располагаются по порядку
+end note
+
+@enduml

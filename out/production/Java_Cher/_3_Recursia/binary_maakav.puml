@@ -1,0 +1,29 @@
+@startuml
+title טבלת מעקב - Бинарный поиск
+skinparam backgroundColor white
+skinparam {
+    defaultFontSize 12
+    defaultTextAlignment center
+}
+
+salt
+{
+    {^"Массив: [1,3,4,5,7,9,11,13,17,20], Ищем: 9"
+    |= Шаг |= left |= right |= mid |= arr[mid] |= Сравнение |= Действие
+    | 1 | 0 | 9 | 4 | 7 | 7 < 9 | Идём вправо
+    | 2 | 5 | 9 | 7 | 13 | 13 > 9 | Идём влево
+    | 3 | 5 | 6 | 5 | 9 | 9 = 9 | Нашли!
+    }
+}
+
+legend right
+    Как читать таблицу:
+    left - левая граница
+    right - правая граница
+    mid - середина диапазона
+    arr[mid] - значение в середине
+    Сравнение - с искомым числом
+    Действие - куда идём дальше
+end legend
+
+@enduml

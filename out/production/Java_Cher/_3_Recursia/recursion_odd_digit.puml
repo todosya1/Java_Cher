@@ -1,0 +1,55 @@
+@startuml
+title Рекурсивная проверка наличия нечётной цифры в числе 123
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "num_func(123)" as call1 {
+    node "1. num = 123\n2. 123 > 0 → продолжаем\n3. 123 % 10 = 3\n4. 3 % 2 = 1 (нечётное)\n5. true || num_func(12)" as step1
+}
+
+node "num_func(12)" as call2 {
+    node "1. num = 12\n2. 12 > 0 → продолжаем\n3. 12 % 10 = 2\n4. 2 % 2 = 0 (чётное)\n5. false || num_func(1)" as step2
+}
+
+node "num_func(1)" as call3 {
+    node "1. num = 1\n2. 1 > 0 → продолжаем\n3. 1 % 10 = 1\n4. 1 % 2 = 1 (нечётное)\n5. true" as step3
+}
+
+call1 -down-> call2: "num/10 = 12"
+call2 -down-> call3: "num/10 = 1"
+
+note right of call1
+    Проверяем последнюю цифру (3)
+    3 - нечётное, возвращаем true
+    (дальнейшие вычисления не важны)
+end note
+
+note right of call2
+    Проверяем последнюю цифру (2)
+    2 - чётное, идём дальше
+end note
+
+note right of call3
+    Проверяем последнюю цифру (1)
+    1 - нечётное, возвращаем true
+end note
+
+legend right
+    Как работает:
+    1. Берём последнюю цифру (num % 10)
+    2. Проверяем на нечётность (% 2 != 0)
+    3. Если нечётная → true
+    4. Если чётная → проверяем остаток числа
+    5. Если число <= 0 → false
+    
+    || - логическое ИЛИ:
+    true || что угодно = true
+    false || X = X
+end legend
+
+@enduml

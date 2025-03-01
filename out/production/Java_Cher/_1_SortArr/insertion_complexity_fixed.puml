@@ -1,0 +1,56 @@
+@startuml
+title Правильный анализ сложности insertionSort
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Анализ сложности" as complexity {
+    node "Первый цикл" as first {
+        node "for(i=0; i<n && arr[i]<num; i++)" as loop1
+        node "Максимум O(n) операций" as note1
+    }
+    
+    node "Второй цикл" as second {
+        node "for(j=n; j>i; j--)" as loop2
+        node "Максимум O(n) операций" as note2
+    }
+}
+
+node "Итоговая сложность: O(n)" as total {
+    node "O(n) + O(n) = O(n)" as formula
+}
+
+legend right
+  Правильный анализ:
+  1. Первый цикл: O(n)
+  2. Второй цикл: O(n)
+  3. Циклы идут последовательно,
+     поэтому сложности складываются
+  4. O(n) + O(n) = O(2n) = O(n)
+end legend
+
+note right of first
+  Поиск позиции для вставки:
+  - В худшем случае просмотрим
+    весь массив: O(n)
+end note
+
+note right of second
+  Сдвиг элементов:
+  - В худшем случае сдвинем
+    весь массив: O(n)
+end note
+
+note bottom of total
+  Важно! Это сложность для
+  одной вставки. Если нужно
+  отсортировать весь массив,
+  понадобится n таких вставок,
+  тогда сложность будет O(n²)
+end note
+
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+title Бинарный поиск в массиве из 10 элементов
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Исходный массив и индексы:" as start {
+    node "Значения:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" as arr0
+    node "Индексы:   [0, 1, 2, 3, 4, 5, 6, 7, 8,  9]" as idx0
+}
+
+node "Поиск числа 8:" as case1 {
+    node "Шаг 1:" as step1 {
+        node "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" as arr1
+        node "left = 0, right = 9\nmid = (0 + 9)/2 = 4\nЗначение arr[4] = 5\n8 > 5, идем вправо" as info1
+    }
+    
+    node "Шаг 2:" as step2 {
+        node "[6, 7, 8, 9, 10]" as arr2 #Pink
+        node "left = 5, right = 9\nmid = (5 + 9)/2 = 7\nЗначение arr[7] = 8\nНашли!" as info2 #LightGreen
+    }
+}
+
+step1 -down-> step2
+
+legend right
+  Как работает:
+  1. Первый шаг:
+     - left = 0, right = 9
+     - mid = (0 + 9)/2 = 4
+     - arr[4] = 5
+     - 8 > 5, ищем справа
+  
+  2. Второй шаг:
+     - left = 5, right = 9
+     - mid = (5 + 9)/2 = 7
+     - arr[7] = 8
+     - Нашли число!
+     
+  Результат: индекс = 7
+end legend
+
+note right of start
+  В массиве из 10 элементов:
+  - Индексы: от 0 до 9
+  - Середина первого деления: 4
+  - При каждом шаге область 
+    поиска уменьшается вдвое
+end note
+@enduml

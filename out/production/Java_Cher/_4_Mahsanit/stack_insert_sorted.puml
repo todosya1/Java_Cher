@@ -1,0 +1,104 @@
+@startdot
+digraph G {
+    rankdir=LR;
+    node [shape=box, fontname="Arial"];
+    
+    subgraph cluster_example1 {
+        label="Пример 1: Вставка числа 15";
+        style=filled;
+        color=lightgrey;
+        
+        subgraph cluster_orig1 {
+            label="Исходный стек";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s1_10 [label="10 ←верх"];
+            s1_20 [label="20"];
+            s1_30 [label="30"];
+            s1_40 [label="40"];
+            s1_50 [label="50"];
+            
+            s1_10 -> s1_20 -> s1_30 -> s1_40 -> s1_50 [dir=none];
+        }
+        
+        subgraph cluster_temp1 {
+            label="Временный стек temp";
+            style=filled;
+            color=lightpink;
+            node [style=filled,color=white];
+            
+            t1_10 [label="10 ←верх"];
+            
+            t1_10 [dir=none];
+        }
+        
+        subgraph cluster_result1 {
+            label="Результат";
+            style=filled;
+            color=lightgreen;
+            node [style=filled,color=white];
+            
+            r1_10 [label="10 ←верх"];
+            r1_15 [label="15"];
+            r1_20 [label="20"];
+            r1_30 [label="30"];
+            r1_40 [label="40"];
+            r1_50 [label="50"];
+            
+            r1_10 -> r1_15 -> r1_20 -> r1_30 -> r1_40 -> r1_50 [dir=none];
+        }
+    }
+    
+    subgraph cluster_example2 {
+        label="Пример 2: Вставка числа 5";
+        style=filled;
+        color=lightgrey;
+        
+        subgraph cluster_orig2 {
+            label="Исходный стек";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s2_10 [label="10 ←верх"];
+            s2_15 [label="15"];
+            s2_20 [label="20"];
+            s2_30 [label="30"];
+            s2_40 [label="40"];
+            s2_50 [label="50"];
+            
+            s2_10 -> s2_15 -> s2_20 -> s2_30 -> s2_40 -> s2_50 [dir=none];
+        }
+        
+        subgraph cluster_temp2 {
+            label="Временный стек temp";
+            style=filled;
+            color=lightpink;
+            node [style=filled,color=white];
+            
+            t2_10 [label="10 ←верх"];
+            
+            t2_10 [dir=none];
+        }
+        
+        subgraph cluster_result2 {
+            label="Результат";
+            style=filled;
+            color=lightgreen;
+            node [style=filled,color=white];
+            
+            r2_5 [label="5 ←верх"];
+            r2_10 [label="10"];
+            r2_15 [label="15"];
+            r2_20 [label="20"];
+            r2_30 [label="30"];
+            r2_40 [label="40"];
+            r2_50 [label="50"];
+            
+            r2_5 -> r2_10 -> r2_15 -> r2_20 -> r2_30 -> r2_40 -> r2_50 [dir=none];
+        }
+    }
+}
+@enddot

@@ -1,0 +1,39 @@
+@startdot
+digraph G {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+    
+    subgraph cluster_0 {
+        label="Исходный стек";
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        
+        2 -> 4 -> 6 -> 8 -> 10 [dir=none];
+        
+        label="Правильный пример\nЧисла идут по убыванию\n2 > 4 > 6 > 8 > 10";
+    }
+    
+    subgraph cluster_1 {
+        label="Временный стек";
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        
+        10_1 -> 8_1 -> 6_1 -> 4_1 -> 2_1 [dir=none];
+        
+        label="Временное хранение\n10 < 8 < 6 < 4 < 2";
+    }
+    
+    subgraph cluster_2 {
+        label="Неправильный пример";
+        style=filled;
+        color=lightpink;
+        node [style=filled,color=white];
+        
+        5 -> 6 -> 7 -> 8_2 -> 8_3 [dir=none];
+        
+        label="Нарушение порядка\n5 > 6 - порядок нарушен\n8 = 8 - одинаковые числа";
+    }
+}
+@enddot

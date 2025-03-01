@@ -1,0 +1,61 @@
+@startdot
+digraph G {
+    rankdir=TB;
+    node [shape=box, fontname="Arial", style="filled,solid", color="black", fillcolor="white"];
+    bgcolor="white";
+    
+    subgraph cluster_complexity {
+        label="Анализ временной сложности";
+        style="filled,solid";
+        color="black";
+        bgcolor="white";
+        
+        subgraph cluster_step1 {
+            label="Шаг 1: O(d)";
+            style="filled,solid";
+            color="black";
+            bgcolor="white";
+            
+            s1 [label="Подсчёт цифр в числе\nnum = 2507\nd = 4 цифры\nO(d)"];
+        }
+        
+        subgraph cluster_step2 {
+            label="Шаг 2: O(d)";
+            style="filled,solid";
+            color="black";
+            bgcolor="white";
+            
+            s2 [label="Создание массива цифр\n[7,0,5,2]\nO(d)"];
+        }
+        
+        subgraph cluster_step3 {
+            label="Шаг 3: O(n * d)";
+            style="filled,solid";
+            color="black";
+            bgcolor="white";
+            
+            s3 [label="Проверка стека\nДля каждого элемента стека (n)\nпроверяем все цифры числа (d)\nO(n * d)"];
+        }
+        
+        subgraph cluster_step4 {
+            label="Шаг 4: O(n)";
+            style="filled,solid";
+            color="black";
+            bgcolor="white";
+            
+            s4 [label="Восстановление стека\nO(n)"];
+        }
+        
+        subgraph cluster_total {
+            label="Итоговая сложность";
+            style="filled,solid";
+            color="black";
+            bgcolor="white";
+            
+            t1 [label="O(d) + O(d) + O(n * d) + O(n)\n= O(n * d)"];
+        }
+        
+        s1 -> s2 -> s3 -> s4 -> t1;
+    }
+}
+@enddot

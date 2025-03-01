@@ -1,0 +1,47 @@
+@startuml
+title Бинарный поиск: исправленная версия
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Поиск числа 7:" as case1 {
+    node "[1, 3, 4, 7, 8, 9, 10]" as arr1
+    node "left = 0, right = 6\nmid = (0 + 6)/2 = 3\nЗначение в arr[3] = 7" as info1 #LightGreen
+    node "Нашли 7 сразу!" as result1
+}
+
+node "Поиск числа 3:" as case2 {
+    node "[1, 3, 4, 7, 8, 9, 10]" as arr2
+    node "left = 0, right = 6\nmid = (0 + 6)/2 = 3\nЗначение в arr[3] = 7" as info2
+    node "3 < 7, поэтому ищем слева" as decision2
+    node "[1, 3, 4]" as subarr2 #Pink
+}
+
+node "Поиск числа 9:" as case3 {
+    node "[1, 3, 4, 7, 8, 9, 10]" as arr3
+    node "left = 0, right = 6\nmid = (0 + 6)/2 = 3\nЗначение в arr[3] = 7" as info3
+    node "9 > 7, поэтому ищем справа" as decision3
+    node "[8, 9, 10]" as subarr3 #Pink
+}
+
+note as N1
+  mid всегда вычисляется как (left + right)/2
+  
+  В начале для массива из 7 элементов:
+  - left = 0, right = 6
+  - mid = (0 + 6)/2 = 3
+  
+  Значит arr[3] = 7 (четвёртый элемент)
+end note
+
+legend
+  Важно! В массиве из 7 элементов:
+  - Индексы идут от 0 до 6
+  - Середина массива это индекс 3
+  - arr[3] = 7 (четвёртый элемент)
+end legend
+@enduml

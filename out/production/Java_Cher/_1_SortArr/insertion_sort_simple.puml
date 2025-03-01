@@ -1,0 +1,41 @@
+@startuml
+title Сортировка массива [5,2,8,1,9]
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "Старт: [5,2,8,1,9]" as start
+
+node "Шаг 1" as step1 {
+    node "[5|2,8,1,9]\nkey=2 < 5\n↓\n[2,5,8,1,9]" as arr1
+}
+
+node "Шаг 2" as step2 {
+    node "[2,5|8,1,9]\nkey=8 > 5\n↓\n[2,5,8,1,9]" as arr2
+}
+
+node "Шаг 3" as step3 {
+    node "[2,5,8|1,9]\nkey=1 < 8,5,2\n↓\n[1,2,5,8,9]" as arr3
+}
+
+node "Шаг 4" as step4 {
+    node "[1,2,5,8|9]\nkey=9 > 8\n↓\n[1,2,5,8,9]" as arr4
+}
+
+start -> step1
+step1 -> step2
+step2 -> step3
+step3 -> step4
+
+legend right
+| символ | значение |
+|---|---|
+| \| | граница сортировки |
+| key | текущий элемент |
+| ↓ | результат шага |
+endlegend
+@enduml

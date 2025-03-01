@@ -1,0 +1,56 @@
+@startuml
+title Сортировка вставками для массива [-5, -4, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Пример: вставка числа 2 в позицию 4" as example {
+    node "Шаг 1: Исходное состояние" as step1 {
+        node "[-5, -4, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" as arr1
+        node "Индексы: [0,  1,  2, 3, 4, 5, 6, 7, 8, 9, 10,11]" as idx1
+        node "Вставляем 2 в позицию 4" as note1
+    }
+
+    node "Шаг 2: Сдвиг элементов" as step2 {
+        node "[-5, -4, 0, 1, 3, 3, 4, 5, 6, 7, 8, 9]" as arr2
+        node "Сдвигаем 3 вправо" as note2
+    }
+
+    node "Шаг 3: Вставка числа" as step3 {
+        node "[-5, -4, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" as arr3 #LightGreen
+        node "Вставляем 2 в освободившееся место" as note3
+    }
+}
+
+step1 -down-> step2
+step2 -down-> step3
+
+legend right
+  Алгоритм:
+  1. Берём число для вставки (2)
+  2. Сравниваем с элементами слева
+  3. Сдвигаем большие элементы
+  4. Вставляем в правильную позицию
+
+  Код:
+  for(i=0; i<n && a[i]<num; i++);
+  for(j=n; j>i; j--)
+      a[j]=a[j-1];
+  a[i]=num;
+end legend
+
+note right of step1
+  Важно:
+  1. Массив слева от позиции
+     вставки уже отсортирован
+  2. Ищем правильное место
+     для вставки числа
+  3. Сдвигаем элементы вправо
+     чтобы освободить место
+end note
+
+@enduml

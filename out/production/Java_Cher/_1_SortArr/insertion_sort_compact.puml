@@ -1,0 +1,48 @@
+@startuml
+title Сортировка вставками массива [5, 2, 8, 1, 9]
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Начальный массив: [5, 2, 8, 1, 9]" as start
+
+node "i=1: вставка 2" as step1 {
+    node "[5| 2, 8, 1, 9] → [2, 5, 8, 1, 9]" as arr1
+    node "key=2 < 5: сдвигаем 5" as note1
+}
+
+node "i=2: вставка 8" as step2 {
+    node "[2, 5| 8, 1, 9] → [2, 5, 8, 1, 9]" as arr2
+    node "key=8 > 5: остаётся на месте" as note2
+}
+
+node "i=3: вставка 1" as step3 {
+    node "[2, 5, 8| 1, 9] → [1, 2, 5, 8, 9]" as arr3
+    node "key=1: сдвигаем 8,5,2" as note3
+}
+
+node "i=4: вставка 9" as step4 {
+    node "[1, 2, 5, 8| 9] → [1, 2, 5, 8, 9]" as arr4
+    node "key=9 > 8: остаётся на месте" as note4
+}
+
+start -down-> step1
+step1 -down-> step2
+step2 -down-> step3
+step3 -down-> step4
+
+legend right
+  | - разделяет отсортированную
+      и неотсортированную части
+  
+  Каждый шаг:
+  1. Берём элемент (key)
+  2. Сравниваем с левой частью
+  3. Сдвигаем большие элементы
+  4. Вставляем key на место
+end legend
+@enduml

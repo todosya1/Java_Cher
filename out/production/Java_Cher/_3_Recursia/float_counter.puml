@@ -1,0 +1,36 @@
+@startuml
+title Подсчёт целых чисел в массиве
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "Исходный массив" as start {
+    node "[1.25, 72.87, 3.0, 4.05, 0, 6, 7.05, 96.4, 5, 41.4]" as arr
+}
+
+node "Проверка чисел" as check {
+    node "Целые числа:\n3.0 → 3\n0 → 0\n6 → 6\n5 → 5" as integers #LightGreen
+    node "Дробные числа:\n1.25\n72.87\n4.05\n7.05\n96.4\n41.4" as floats #Pink
+}
+
+node "Подсчёт" as count {
+    node "Количество целых чисел = 4" as result
+}
+
+start -down-> check
+check -down-> count
+
+legend right
+    Как работает:
+    1. Берём число a[n-1]
+    2. Вычитаем целую часть (int)a[n-1]
+    3. Если результат = 0:
+       число целое, count++
+    4. Рекурсивно проверяем
+       остальные числа
+end legend
+
+@enduml

@@ -1,0 +1,63 @@
+@startdot
+digraph G {
+    rankdir=LR;
+    node [shape=box, fontname="Arial"];
+    
+    subgraph cluster_process {
+        label="Процесс поиска максимального элемента";
+        style=filled;
+        color=lightgrey;
+        
+        subgraph cluster_orig {
+            label="Шаг 1: Исходный стек";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s1 [label="Стек st\n[2.5, 7.1, 3.4, 9.2, 1.5]\n9.2 - максимум"];
+        }
+        
+        subgraph cluster_temp {
+            label="Шаг 2: Поиск максимума";
+            style=filled;
+            color=lightpink;
+            node [style=filled,color=white];
+            
+            t1 [label="Временный стек temp\nПерекладываем элементы\nи ищем максимум"];
+            t2 [label="max = 9.2"];
+        }
+        
+        subgraph cluster_restore {
+            label="Шаг 3: Восстановление";
+            style=filled;
+            color=lightblue;
+            node [style=filled,color=white];
+            
+            r1 [label="Возвращаем элементы\nкроме максимума\nв исходный стек"];
+        }
+        
+        subgraph cluster_result {
+            label="Результат";
+            style=filled;
+            color=lightgreen;
+            node [style=filled,color=white];
+            
+            result1 [label="Стек st\n[2.5, 7.1, 3.4, 1.5]\nБез максимума"];
+            result2 [label="Возвращаем\nmax = 9.2"];
+        }
+    }
+    
+    subgraph cluster_complexity {
+        label="Временная сложность: O(n)";
+        style=filled;
+        color=lightyellow;
+        node [style=filled,color=white];
+        
+        c1 [label="Первый проход: O(n)\nПоиск максимума"];
+        c2 [label="Второй проход: O(n)\nВосстановление стека"];
+        c3 [label="Итого: O(n) + O(n) = O(n)"];
+        
+        c1 -> c2 -> c3 [style=invis];
+    }
+}
+@enddot

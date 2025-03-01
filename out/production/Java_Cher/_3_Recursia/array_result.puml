@@ -1,0 +1,38 @@
+@startuml
+title Пошаговое вычисление суммы произведений
+skinparam backgroundColor white
+skinparam {
+    defaultFontSize 12
+    defaultTextAlignment center
+}
+
+node "Исходные массивы" as start {
+    node "Массив 1:  [1,   2,   1,   2,   1,   2,   1]" as arr1
+    node "Массив 2:  [1,  -2,   3,   4,   5,  -6,   7]" as arr2
+}
+
+node "Умножение" as mult {
+    node "Произведения:\n1×1  2×(-2)  1×3   2×4   1×5   2×(-6)  1×7\n ↓     ↓      ↓     ↓     ↓      ↓      ↓\n 1    -4      3     8     5    -12     7" as products
+}
+
+node "Сложение" as sum {
+    node "1 + (-4) + 3 + 8 + 5 + (-12) + 7" as addition
+}
+
+node "Результат = 8" as result #LightGreen
+
+start -down-> mult
+mult -down-> sum
+sum -down-> result
+
+legend right
+    Процесс вычисления:
+    1. Берём числа с одинаковых позиций
+    2. Перемножаем их
+    3. Складываем все произведения
+    
+    Проверка:
+    1 - 4 + 3 + 8 + 5 - 12 + 7 = 8
+end legend
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+title Рекурсивное перемножение элементов двух массивов
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "func(массивы, 7)" as call1 {
+    node "1. s = 7\n2. 1 * 7 = 7\n3. return 7 + следующий шаг" as step1
+}
+
+node "func(массивы, 6)" as call2 {
+    node "1. s = 6\n2. 2 * (-6) = -12\n3. return -12 + следующий шаг" as step2
+}
+
+node "func(массивы, 5)" as call3 {
+    node "1. s = 5\n2. 1 * 5 = 5\n3. return 5 + следующий шаг" as step3
+}
+
+node "func(массивы, 4)" as call4 {
+    node "1. s = 4\n2. 2 * 4 = 8\n3. return 8 + следующий шаг" as step4
+}
+
+node "func(массивы, 3)" as call5 {
+    node "1. s = 3\n2. 1 * 3 = 3\n3. return 3 + следующий шаг" as step5
+}
+
+node "func(массивы, 2)" as call6 {
+    node "1. s = 2\n2. 2 * (-2) = -4\n3. return -4 + следующий шаг" as step6
+}
+
+node "func(массивы, 1)" as call7 {
+    node "1. s = 1\n2. 1 * 1 = 1\n3. return 1 + следующий шаг" as step7
+}
+
+node "func(массивы, 0)" as call8 {
+    node "s = 0\nreturn 0" as step8
+}
+
+call1 -down-> call2
+call2 -down-> call3
+call3 -down-> call4
+call4 -down-> call5
+call5 -down-> call6
+call6 -down-> call7
+call7 -down-> call8
+
+legend right
+    Массивы:
+    [1, 2, 1, 2, 1, 2, 1]
+    [1,-2, 3, 4, 5,-6, 7]
+    
+    На каждом шаге:
+    1. Берём числа с индексом s-1
+    2. Перемножаем их
+    3. Добавляем к сумме предыдущих
+end legend
+
+@enduml

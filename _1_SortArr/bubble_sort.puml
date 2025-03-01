@@ -1,0 +1,65 @@
+@startuml
+title Сортировка пузырьком (Bubble Sort)
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Пример сортировки массива [5, 3, 8, 4, 2]" as example {
+    node "Исходный массив:" as start {
+        node "[5, 3, 8, 4, 2]" as arr0
+    }
+
+    node "Проход 1:" as pass1 {
+        node "[3, 5, 4, 2, 8]" as arr1
+        node "5↔3  5↔8  8↔4  8↔2" as step1
+    }
+
+    node "Проход 2:" as pass2 {
+        node "[3, 4, 2, 5, 8]" as arr2
+        node "3↔5  5↔4  5↔2" as step2
+    }
+
+    node "Проход 3:" as pass3 {
+        node "[3, 2, 4, 5, 8]" as arr3
+        node "3↔4  4↔2" as step3
+    }
+
+    node "Проход 4:" as pass4 {
+        node "[2, 3, 4, 5, 8]" as arr4
+        node "3↔2" as step4
+    }
+}
+
+start -down-> pass1
+pass1 -down-> pass2
+pass2 -down-> pass3
+pass3 -down-> pass4
+
+legend right
+  Как работает:
+  1. Внешний цикл (i): n-1 проходов
+  2. Внутренний цикл (j): сравнивает
+     соседние элементы
+  3. Если левый > правого - меняем местами
+  4. После каждого прохода самый большой
+     элемент "всплывает" в конец
+  
+  Сложность:
+  - Временная: O(n²)
+  - Пространственная: O(1)
+end legend
+
+note right of pass1
+  В каждом проходе:
+  1. Сравниваем соседние элементы
+  2. Если левый больше правого,
+     меняем их местами
+  3. Самый большой элемент
+     "всплывает" в конец
+end note
+
+@enduml

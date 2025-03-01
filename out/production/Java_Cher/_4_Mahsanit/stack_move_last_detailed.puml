@@ -1,0 +1,98 @@
+@startdot
+digraph G {
+    rankdir=LR;
+    node [shape=box, fontname="Arial"];
+    
+    subgraph cluster_step1 {
+        label="Шаг 1: Начальное состояние";
+        style=filled;
+        color=lightgrey;
+        
+        subgraph cluster_orig1 {
+            label="Исходный стек st";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s1_50 [label="50 ←верх"];
+            s1_40 [label="40"];
+            s1_30 [label="30"];
+            s1_20 [label="20"];
+            s1_10 [label="10 ←нужно переместить"];
+            
+            s1_50 -> s1_40 -> s1_30 -> s1_20 -> s1_10 [dir=none];
+        }
+    }
+    
+    subgraph cluster_step2 {
+        label="Шаг 2: Перенос в temp (переворот)";
+        style=filled;
+        color=lightpink;
+        
+        subgraph cluster_temp2 {
+            label="Стек temp";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            t2_10 [label="10 ←верх (lastEl)"];
+            t2_20 [label="20"];
+            t2_30 [label="30"];
+            t2_40 [label="40"];
+            t2_50 [label="50"];
+            
+            t2_10 -> t2_20 -> t2_30 -> t2_40 -> t2_50 [dir=none];
+        }
+    }
+    
+    subgraph cluster_step3 {
+        label="Шаг 3: Сохранение lastEl";
+        style=filled;
+        color=lightblue;
+        
+        subgraph cluster_temp3 {
+            label="Стек temp";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            t3_20 [label="20 ←верх"];
+            t3_30 [label="30"];
+            t3_40 [label="40"];
+            t3_50 [label="50"];
+            
+            t3_20 -> t3_30 -> t3_40 -> t3_50 [dir=none];
+        }
+        
+        subgraph cluster_last3 {
+            label="Переменная lastEl";
+            style=filled;
+            color=yellow;
+            node [style=filled,color=white];
+            
+            last [label="10"];
+        }
+    }
+    
+    subgraph cluster_step4 {
+        label="Шаг 4: Финальный результат";
+        style=filled;
+        color=lightgreen;
+        
+        subgraph cluster_final {
+            label="Стек res (результат)";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            f_10 [label="10 ←верх"];
+            f_50 [label="50"];
+            f_40 [label="40"];
+            f_30 [label="30"];
+            f_20 [label="20"];
+            
+            f_10 -> f_50 -> f_40 -> f_30 -> f_20 [dir=none];
+        }
+    }
+}
+@enddot

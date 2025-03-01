@@ -1,0 +1,71 @@
+@startdot
+digraph G {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+    
+    subgraph cluster_example {
+        label="Пример работы программы";
+        style=filled;
+        color=lightgrey;
+        
+        subgraph cluster_step1 {
+            label="Шаг 1: Ввод 30";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s1 [label="[30]"];
+        }
+        
+        subgraph cluster_step2 {
+            label="Шаг 2: Ввод 10";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s2 [label="[10,30]"];
+        }
+        
+        subgraph cluster_step3 {
+            label="Шаг 3: Ввод 20";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s3 [label="[10,20,30]"];
+        }
+        
+        subgraph cluster_step4 {
+            label="Шаг 4: Ввод 5";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s4 [label="[5,10,20,30]"];
+        }
+        
+        subgraph cluster_step5 {
+            label="Шаг 5: Ввод -999";
+            style=filled;
+            color=lightpink;
+            node [style=filled,color=white];
+            
+            s5 [label="Конец ввода\nРезультат: [5,10,20,30]"];
+        }
+        
+        s1 -> s2 -> s3 -> s4 -> s5;
+    }
+    
+    subgraph cluster_complexity {
+        label="Временная сложность";
+        style=filled;
+        color=lightblue;
+        node [style=filled,color=white];
+        
+        c1 [label="Для n чисел:\nВставка каждого числа: O(n)\nОбщая сложность: O(n²)"];
+        c2 [label="Пояснение:\nКаждая вставка требует\nперекладывания до n элементов"];
+        
+        c1 -> c2 [style=invis];
+    }
+}
+@enddot

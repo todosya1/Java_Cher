@@ -1,0 +1,54 @@
+@startuml
+title Удаление узла из двусвязного списка (индекс = 2)
+
+' Стиль для узлов
+skinparam node {
+    BackgroundColor LightBlue
+    BorderColor Blue
+    FontSize 14
+}
+
+' Стиль для стрелок
+skinparam arrow {
+    Color Blue
+    FontSize 12
+}
+
+' До удаления
+node "До удаления:" as before
+node "1" as n1
+node "2" as n2
+node "7" as n3 #Pink
+node "2" as n4
+node "1" as n5
+
+n1 <-right-> n2
+n2 <-right-> n3
+n3 <-right-> n4
+n4 <-right-> n5
+
+' После удаления
+node "\nПосле удаления:" as after
+node "1" as m1
+node "2" as m2
+node "2" as m4
+node "1" as m5
+
+m1 <-right-> m2
+m2 <-right-> m4
+m4 <-right-> m5
+
+note right of n3
+  Узел для удаления (индекс = 2)
+end note
+
+legend right
+  Пояснение:
+  1. Находим узел по индексу
+  2. Получаем ссылки на соседние узлы
+  3. Перенастраиваем указатели:
+     - prev.right = next
+     - next.left = prev
+  4. Удаляемый узел отсоединяется
+end legend
+@enduml

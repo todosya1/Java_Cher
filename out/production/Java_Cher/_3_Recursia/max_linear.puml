@@ -1,0 +1,50 @@
+@startuml
+title Поиск максимума (линейный метод A)
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "Исходный массив [1,-5,10,-2,4,6,-7,8,-9,3]" as arr
+
+node "Сравнение элементов" as check {
+    node "index = 0: max(1, ↓)" as step1
+    node "index = 1: max(-5, ↓)" as step2
+    node "index = 2: max(10, ↓)" as step3
+    node "index = 3: max(-2, ↓)" as step4
+    node "index = 4: max(4, ↓)" as step5
+    node "index = 5: max(6, ↓)" as step6
+    node "index = 6: max(-7, ↓)" as step7
+    node "index = 7: max(8, ↓)" as step8
+    node "index = 8: max(-9, ↓)" as step9
+    node "index = 9: return 3" as step10
+}
+
+node "Возврат значений" as returns {
+    node "3 → max(-9,3) = 3" as ret9
+    node "3 → max(8,3) = 8" as ret8
+    node "8 → max(-7,8) = 8" as ret7
+    node "8 → max(6,8) = 8" as ret6
+    node "8 → max(4,8) = 8" as ret5
+    node "8 → max(-2,8) = 8" as ret4
+    node "8 → max(10,8) = 10" as ret3 #LightGreen
+    node "10 → max(-5,10) = 10" as ret2
+    node "10 → max(1,10) = 10" as ret1
+}
+
+arr -down-> check
+check -down-> returns
+
+legend right
+    Как работает:
+    1. Начинаем с первого элемента
+    2. Рекурсивно ищем максимум
+       в оставшейся части
+    3. Сравниваем текущий элемент
+       с найденным максимумом
+    4. Возвращаем большее значение
+end legend
+
+@enduml

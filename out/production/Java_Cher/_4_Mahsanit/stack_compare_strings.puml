@@ -1,0 +1,93 @@
+@startdot
+digraph G {
+    rankdir=LR;
+    node [shape=box, fontname="Arial"];
+    
+    subgraph cluster_step1 {
+        label="Шаг 1: Исходные стеки";
+        style=filled;
+        color=lightgrey;
+        
+        subgraph cluster_st1 {
+            label="Стек st1";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s1_1 [label="klads ←верх"];
+            s1_2 [label="Joja"];
+            s1_3 [label="Ucira"];
+            s1_4 [label="Jaja"];
+            s1_5 [label="qwerty"];
+            
+            s1_1 -> s1_2 -> s1_3 -> s1_4 -> s1_5 [dir=none];
+        }
+        
+        subgraph cluster_st2 {
+            label="Стек st2";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            s2_1 [label="klads ←верх"];
+            s2_2 [label="Jo1ja"];
+            s2_3 [label="Ucira"];
+            s2_4 [label="Jaja"];
+            s2_5 [label="qwerty"];
+            
+            s2_1 -> s2_2 -> s2_3 -> s2_4 -> s2_5 [dir=none];
+        }
+    }
+    
+    subgraph cluster_step2 {
+        label="Шаг 2: Сравнение и перенос в temp";
+        style=filled;
+        color=lightpink;
+        
+        subgraph cluster_compare {
+            label="Сравнение элементов";
+            style=filled;
+            color=white;
+            node [style=filled,color=white];
+            
+            comp1 [label="klads = klads ✓"];
+            comp2 [label="Joja ≠ Jo1ja ✗"];
+            
+            comp1 -> comp2 [dir=none];
+        }
+        
+        subgraph cluster_temp1 {
+            label="temp1";
+            style=filled;
+            color=lightblue;
+            node [style=filled,color=white];
+            
+            t1_1 [label="klads"];
+            t1_2 [label="Joja"];
+            
+            t1_1 -> t1_2 [dir=none];
+        }
+        
+        subgraph cluster_temp2 {
+            label="temp2";
+            style=filled;
+            color=lightblue;
+            node [style=filled,color=white];
+            
+            t2_1 [label="klads"];
+            t2_2 [label="Jo1ja"];
+            
+            t2_1 -> t2_2 [dir=none];
+        }
+    }
+    
+    subgraph cluster_result {
+        label="Результат: false";
+        style=filled;
+        color=lightred;
+        node [style=filled,color=white];
+        
+        result [label="Стеки не равны\nНайдено различие:\nJoja ≠ Jo1ja"];
+    }
+}
+@enddot

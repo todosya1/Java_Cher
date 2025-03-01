@@ -1,0 +1,38 @@
+@startuml
+title Таблица трассировки рекурсивной функции num_func
+skinparam backgroundColor white
+skinparam {
+    defaultFontSize 12
+    defaultTextAlignment center
+}
+
+salt
+{
+    {^"Пример 1: num = 123"
+    |= Вызов |= num |= num%10 |= (num%10)%2!=0 |= num/10 |= Результат
+    | num_func(123) | 123 | 3 | true | 12 | true
+    | num_func(12) | 12 | 2 | false | 1 | true
+    | num_func(1) | 1 | 1 | true | 0 | true
+    }
+}
+
+salt
+{
+    {^"Пример 2: num = 82"
+    |= Вызов |= num |= num%10 |= (num%10)%2!=0 |= num/10 |= Результат
+    | num_func(82) | 82 | 2 | false | 8 | false
+    | num_func(8) | 8 | 8 | false | 0 | false
+    | num_func(0) | 0 | - | - | - | false
+    }
+}
+
+legend right
+    Обозначения:
+    num%10 - последняя цифра
+    (num%10)%2!=0 - проверка на нечётность
+    num/10 - число без последней цифры
+    true - найдена нечётная цифра
+    false - все цифры чётные
+end legend
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+title Рекурсивный подсчёт суммы чётных чисел
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "Исходный массив [1,2,3,4,5,6,7,8,9,0]" as arr
+
+node "Проверка с конца массива" as check {
+    node "index = 9: 0 (чётное) → +0" as step1 #LightGreen
+    node "index = 8: 9 (нечётное) → пропуск" as step2 #Pink
+    node "index = 7: 8 (чётное) → +8" as step3 #LightGreen
+    node "index = 6: 7 (нечётное) → пропуск" as step4 #Pink
+    node "index = 5: 6 (чётное) → +6" as step5 #LightGreen
+    node "index = 4: 5 (нечётное) → пропуск" as step6 #Pink
+    node "index = 3: 4 (чётное) → +4" as step7 #LightGreen
+    node "index = 2: 3 (нечётное) → пропуск" as step8 #Pink
+    node "index = 1: 2 (чётное) → +2" as step9 #LightGreen
+    node "index = 0: 1 (нечётное) → пропуск" as step10 #Pink
+}
+
+node "Результат: 0 + 8 + 6 + 4 + 2 = 20" as result #LightGreen
+
+arr -down-> check
+check -down-> result
+
+legend right
+    Как работает:
+    1. Начинаем с последнего элемента
+    2. Проверяем на чётность (% 2 == 0)
+    3. Если чётное - добавляем к сумме
+    4. Рекурсивно проверяем предыдущий
+    5. Когда index < 0 - возвращаем 0
+end legend
+
+@enduml

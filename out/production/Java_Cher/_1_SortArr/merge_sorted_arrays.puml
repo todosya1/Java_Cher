@@ -1,0 +1,78 @@
+@startuml
+title Слияние двух отсортированных массивов
+
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 14
+}
+
+node "Исходные массивы" as start {
+    node "arrA: [1, 3, 5, 7]" as arrA
+    node "arrB: [2, 4, 6, 8, 9]" as arrB
+    node "arrC: [_, _, _, _, _, _, _, _, _]" as arrC0
+}
+
+node "Шаг 1: Сравниваем 1 и 2" as step1 {
+    node "i=0: [1] ≤ j=0: [2]" as compare1
+    node "arrC: [1, _, _, _, _, _, _, _, _]" as arrC1
+    node "i++, k++" as move1
+}
+
+node "Шаг 2: Сравниваем 3 и 2" as step2 {
+    node "i=1: [3] > j=0: [2]" as compare2
+    node "arrC: [1, 2, _, _, _, _, _, _, _]" as arrC2
+    node "j++, k++" as move2
+}
+
+node "Последний шаг сравнений" as step3 {
+    node "i=3: [7] > j=3: [6]" as compare3
+    node "arrC: [1, 2, 3, 4, 5, 6, _, _, _]" as arrC3
+    node "Добавляем 6, j++, k++" as move3
+}
+
+node "Добавляем остаток arrA" as step4 {
+    node "Остался элемент [7]" as remain1
+    node "arrC: [1, 2, 3, 4, 5, 6, 7, _, _]" as arrC4
+}
+
+node "Добавляем остаток arrB" as step5 {
+    node "Остались элементы [8, 9]" as remain2
+    node "arrC: [1, 2, 3, 4, 5, 6, 7, 8, 9]" as arrC5 #LightGreen
+}
+
+start -down-> step1
+step1 -down-> step2
+step2 -down-> step3
+step3 -down-> step4
+step4 -down-> step5
+
+legend right
+  Алгоритм:
+  1. Сравниваем элементы arrA[i] и arrB[j]
+  2. Меньший элемент добавляем в arrC
+  3. Увеличиваем соответствующий индекс
+  4. Когда один массив закончился,
+     копируем остаток другого
+  
+  Индексы:
+  i - для arrA
+  j - для arrB
+  k - для arrC
+end legend
+
+note right of step1
+  Пока есть элементы в обоих массивах:
+  - Сравниваем текущие элементы
+  - Меньший добавляем в arrC
+  - Сдвигаем указатель использованного массива
+end note
+
+note right of step4
+  Когда один из массивов закончился:
+  - Проверяем какой массив не пуст
+  - Копируем его остаток в arrC
+end note
+
+@enduml

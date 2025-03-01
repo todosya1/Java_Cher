@@ -1,0 +1,41 @@
+@startuml
+title Поиск пары чисел с суммой кратной 10
+skinparam backgroundColor white
+skinparam node {
+    BackgroundColor white
+    BorderColor black
+    FontSize 12
+}
+
+node "Исходный массив [3,4,2,8,2,4,5,6,7,8,-1,0,-19]" as arr
+
+node "Проверка пар с конца" as check {
+    node "index = 12: -19 + 0 = -19 → не кратно 10" as step1 #Pink
+    node "index = 11: 0 + (-1) = -1 → не кратно 10" as step2 #Pink
+    node "index = 10: -1 + 8 = 7 → не кратно 10" as step3 #Pink
+    node "index = 9: 8 + 7 = 15 → не кратно 10" as step4 #Pink
+    node "index = 8: 7 + 6 = 13 → не кратно 10" as step5 #Pink
+    node "index = 7: 6 + 5 = 11 → не кратно 10" as step6 #Pink
+    node "index = 6: 5 + 4 = 9 → не кратно 10" as step7 #Pink
+    node "index = 5: 4 + 2 = 6 → не кратно 10" as step8 #Pink
+    node "index = 4: 2 + 8 = 10 → кратно 10!" as step9 #LightGreen
+}
+
+node "Результат: true\nНайдена пара (2,8) с суммой 10" as result #LightGreen
+
+arr -down-> check
+check -down-> result
+
+legend right
+    Как работает:
+    1. Начинаем с конца массива
+    2. Берём пары соседних чисел
+    3. Считаем их сумму
+    4. Проверяем условия:
+       - Сумма ≠ 0
+       - Сумма делится на 10
+    5. Если найдена подходящая
+       пара - возвращаем true
+end legend
+
+@enduml
