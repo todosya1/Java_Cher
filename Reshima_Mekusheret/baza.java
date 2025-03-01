@@ -5,7 +5,7 @@ import unit4.collectionsLib.Node;
 public class baza {
     /*
 
-    основные методы и приемы для "Linked list" / "Связный список" / "רשימה מקושרת"
+    основные методы и приемы для "Queue" / "Связный список" / "רשימה מקושרת"
     -- current.getValue() -     получить значение текущей ноды
     -- current.getNext()  -     получить значение следующей ноды
     -- current.setNext(new Node<>(value)) - установить значение следующей ноды

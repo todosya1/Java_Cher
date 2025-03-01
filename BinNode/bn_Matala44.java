@@ -6,12 +6,6 @@ import unit4.collectionsLib.BinNode;
 // כיתה 48-5
 
 
-// Write a function that takes a positive integer `n`.
-// The function must construct and return a doubly linked list
-// containing consecutive integers from `n` to `1`.
-// The list must be constructed in reverse order.
-
-
 public class bn_Matala44 {
     public static void main(String[] args) {
         createOkevList(5);

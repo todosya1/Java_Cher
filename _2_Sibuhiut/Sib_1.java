@@ -1,5 +1,4 @@
-package Sibuhiut;
-import unit4.collectionsLib.Node;
+package _2_Sibuhiut;
 
 public class Sib_1 {
     public static void main(String[] args) {

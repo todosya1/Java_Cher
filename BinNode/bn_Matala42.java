@@ -6,8 +6,7 @@ import unit4.collectionsLib.BinNode;
 // כיתה 48-5
 
 
-// Напиши функцию, которая получает binNode int-ов и целое число num.
-// Метод должен добавить новый элемент со значением num в голову списка
+
 public class bn_Matala42 {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 3, 2, 1};

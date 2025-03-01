@@ -5,9 +5,6 @@ import unit4.collectionsLib.BinNode;
 // שמיאקין לאוניד 336540331
 // כיתה 48-5
 
-
-// Напиши функцию, которая получает binNode int-ов и целое число num.
-// Метод должен добавить новый элемент со значением num в конец списка
 public class bn_Matala43 {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 3, 2, 4};
@@ -25,7 +22,7 @@ public class bn_Matala43 {
      *
      * @param head the current head of the linked list
      * @param num the integer value to be inserted as the new head
-     * Complexity: O(1) (constant time, as operations are limited to the head and its neighbors)
+     * Complexity: O(n)
      */
     public static void insertEndBNlist(BinNode<Integer> head, int num) {
         if (head == null) {
@@ -33,15 +30,15 @@ public class bn_Matala43 {
             return;
         }
 
-        BinNode<Integer> current =  head;   // Указатель, который будет путешествовать по списку
+        BinNode<Integer> current =  head;   // Create pointer
 
-        // Перейти к последнему узлу
+        // go to the end node
         while (current.hasRight()){
             current = current.getRight();
         }
 
-        // установить ссылки
-        BinNode<Integer> temp = new BinNode<>(num);   // Создать новый узел
+        // Create kesher
+        BinNode<Integer> temp = new BinNode<>(num);
         current.setRight(temp);
         temp.setLeft(current);
     }

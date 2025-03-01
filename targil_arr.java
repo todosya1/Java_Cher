@@ -1,6 +1,6 @@
 import unit4.collectionsLib.BinNode;
 
-public class BiinNode_1 {
+public class targil_arr {
     public static void main (String[]args){
         BinNode<Integer> list = createList(5);
         printToRight(list);

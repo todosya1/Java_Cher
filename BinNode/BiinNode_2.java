@@ -1,3 +1,5 @@
+package BinNode;
+
 import unit4.collectionsLib.BinNode;
 // Напиши функцию, которая принимает двусвязный список целых чисел и выводит его слева направо
 public class BiinNode_2 {
